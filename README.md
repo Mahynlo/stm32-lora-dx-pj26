@@ -1,5 +1,12 @@
 # STM32 LoRa — DX-PJ26 V1.2 + DX-LR30 (SX1262)
 
+![STM32F103](https://img.shields.io/badge/MCU-STM32F103C8-03234B?logo=stmicroelectronics&logoColor=white)
+![SX1262](https://img.shields.io/badge/LoRa-SX1262%20%2F%20DX--LR30-1E88E5)
+![915 MHz](https://img.shields.io/badge/banda-915%20MHz-43A047)
+![PlatformIO](https://img.shields.io/badge/PlatformIO-ststm32-F5822A?logo=platformio&logoColor=white)
+![Arduino](https://img.shields.io/badge/framework-Arduino-00878F?logo=arduino&logoColor=white)
+![RadioLib](https://img.shields.io/badge/RadioLib-%5E7.4.0-6A1B9A)
+
 Enlace LoRa punto a punto entre dos placas **DX-SMART DX-PJ26 V1.2** (STM32F103C8T6) con módulo **DX-LR30-900M22S** (Semtech SX1262), usando **PlatformIO**, el framework **Arduino (stm32duino)** y la librería **[RadioLib](https://github.com/jgromes/RadioLib)**.
 
 El mismo firmware sirve como transmisor o receptor: el TX envía `Hola #N` cada 2 s y el RX muestra el mensaje con su RSSI y SNR por el puerto serie.
