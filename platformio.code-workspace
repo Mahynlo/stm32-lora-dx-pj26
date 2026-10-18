@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../Programas/platformio"
+		},
+		{
+			"name": "stm32_lora",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
