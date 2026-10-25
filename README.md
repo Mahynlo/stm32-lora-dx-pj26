@@ -67,6 +67,8 @@ Las dependencias (`RadioLib ^7.4.0`, `SPI`) las descarga PlatformIO automáticam
 ```
 ├── docs/guia.md        # Guía detallada: hallazgos, pinout, errores y diagnóstico
 ├── src/main.cpp        # Firmware TX/RX con RadioLib
+├── tools/
+│   └── monitor_rssi.py # Monitor serie con gráfica de RSSI/SNR (uv run)
 ├── probar_app.py       # Prueba el arranque con distintas combinaciones RTS/DTR
 ├── platformio.ini      # Configuración del proyecto (upload con CubeProgrammer)
 ├── include/ lib/ test/ # Carpetas estándar de PlatformIO
@@ -117,6 +119,24 @@ Radio OK
 Escuchando...
 Recibido: Hola #12  | RSSI: -35.00 dBm  | SNR: 9.75 dB
 ```
+
+### 5. Monitor gráfico de señal (opcional)
+
+[tools/monitor_rssi.py](tools/monitor_rssi.py) se conecta al **receptor** y muestra en tiempo real:
+
+- Gráfica de **RSSI** con franjas de calidad (excelente / buena / regular / débil) y gráfica de **SNR**.
+- Último valor, mínimo / promedio / máximo, paquetes recibidos, **perdidos** (según el contador `#N`) y errores de CRC.
+- Los últimos mensajes del puerto serie.
+
+Requiere [uv](https://docs.astral.sh/uv/). Las dependencias (`pyserial`, `matplotlib`) están declaradas dentro del script y uv las instala solo la primera vez:
+
+```bash
+uv run tools/monitor_rssi.py                      # COM3 a 115200
+uv run tools/monitor_rssi.py --port COM5 --csv datos.csv
+uv run tools/monitor_rssi.py --list               # ver puertos disponibles
+```
+
+Cierra antes el monitor de PlatformIO, porque el puerto no se puede abrir dos veces. Con `--csv` cada paquete se guarda (fecha, mensaje, RSSI, SNR) para analizarlo después, por ejemplo en una prueba de alcance.
 
 ### Dos placas
 
